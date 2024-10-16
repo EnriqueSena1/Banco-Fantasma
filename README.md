@@ -1,2 +1,3 @@
 # Banco-de-Fantasma
- Banco com as atividades avaliativas caleb
+ Banco com os temas estudados ate agora para consulta e realizar atividade avaliativa. Prof. Calebe Lemos
+ 
