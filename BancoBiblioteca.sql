@@ -73,7 +73,8 @@ select Autores.nome, Autores.pais from Autores join Livros on Autores.autor_id =
 select titulo,  preco from Livros;
 
 # 4-Quais membros pegaram livros emprestados?
-select 
+select Membros.nome from Membros 
+join Emprestimos on Membros.membro_id = Emprestimos.membro_id;
 
 --5-Quais livros foram emprestados até agora?
 
