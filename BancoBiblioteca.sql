@@ -86,15 +86,22 @@ select Livros.titulo as Nome_livros, count(Emprestimos.livro_id)*Livros.preco
 from Livros
 join Emprestimos on Emprestimos.livro_id = Livros.livro_id group by Livros.titulo;
 
---7- Quais categorias de livros estão disponíveis na biblioteca?
+
+# 7- Quais categorias de livros estão disponíveis na biblioteca?
+select Categorias.categoria_id, Categorias.nome from Categorias;
 
 --8- Quais são os autores e suas respectivas categorias de livros?
 
 --9- Qual é a quantidade total de livros de cada categoria?
 
---0- Liste todos os livros junto com o nome do autor e a categoria.
+-- 10- Liste todos os livros junto com o nome do autor e a categoria.
 
---1- Quem são os membros que mais pegaram livros emprestados?
+-- 11- Quem são os membros que mais pegaram livros emprestados?
 
-
+-- 12- Quais livros foram devolvidos e em que datas?
+-- 13- Qual é a média de preço dos livros na biblioteca?
+-- 14- Qual é a quantidade total de livros emprestados?
+-- 15- Quais membros ainda não devolveram os livros?
+-- 16- Qual foi a receita gerada por empréstimos até agora?
+-- 17- Quais são os livros disponíveis em cada categoria
 
