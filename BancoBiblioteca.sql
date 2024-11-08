@@ -81,8 +81,10 @@ select Livros.titulo from Livros
 join Emprestimos on Livros.livro_id = Emprestimos.livro_id;
 
 # 6-Qual é a receita total de cada livro (considerando o preço e as unidades vendidas)?
-select Livros.preco from Livros
-join Emprestimos on Livros.preco = Emprestimos.Livros
+
+select Livros.titulo as Nome_livros, count(Emprestimos.livro_id)*Livros.preco
+from Livros
+join Emprestimos on Emprestimos.livro_id = Livros.livro_id group by Livros.titulo;
 
 --7- Quais categorias de livros estão disponíveis na biblioteca?
 
