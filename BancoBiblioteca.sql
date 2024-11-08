@@ -76,9 +76,13 @@ select titulo,  preco from Livros;
 select Membros.nome from Membros 
 join Emprestimos on Membros.membro_id = Emprestimos.membro_id;
 
---5-Quais livros foram emprestados até agora?
+# 5-Quais livros foram emprestados até agora?
+select Livros.titulo from Livros
+join Emprestimos on Livros.livro_id = Emprestimos.livro_id;
 
---6-Qual é a receita total de cada livro (considerando o preço e as unidades vendidas)?
+# 6-Qual é a receita total de cada livro (considerando o preço e as unidades vendidas)?
+select Livros.preco from Livros
+join Emprestimos on Livros.preco = Emprestimos.Livros
 
 --7- Quais categorias de livros estão disponíveis na biblioteca?
 
