@@ -90,18 +90,67 @@ join Emprestimos on Emprestimos.livro_id = Livros.livro_id group by Livros.titul
 # 7- Quais categorias de livros estão disponíveis na biblioteca?
 select Categorias.categoria_id, Categorias.nome from Categorias;
 
---8- Quais são os autores e suas respectivas categorias de livros?
+# 7- Quais categorias de livros estão disponíveis na biblioteca?
+# select Categorias.categoria_id, Categorias.nome from Categorias;
+select Categorias.nome as Categorias_Disponiveis
+from Livros
+join Categorias on Livros.categoria_id = Categorias.categoria_id group by Categorias_Disponiveis;
 
---9- Qual é a quantidade total de livros de cada categoria?
+# 8- Quais são os autores e suas respectivas categorias de livros?
+select Autores.nome as Nome_Autor, Categorias.nome as Nome_Categoria
+from Livros
+join Autores on Autores.autor_id = Livros.livro_id
+join Categorias on Categorias.categoria_id = Livros.categoria_id;
 
--- 10- Liste todos os livros junto com o nome do autor e a categoria.
+# 9- Qual é a quantidade total de livros de cada categoria?
+select C.nome, count(L.livro_id) as Quantidade 
+from Categorias C 
+join Livros L on C.categoria_id = L.categoria_id group by C.nome;
 
--- 11- Quem são os membros que mais pegaram livros emprestados?
 
--- 12- Quais livros foram devolvidos e em que datas?
--- 13- Qual é a média de preço dos livros na biblioteca?
--- 14- Qual é a quantidade total de livros emprestados?
--- 15- Quais membros ainda não devolveram os livros?
--- 16- Qual foi a receita gerada por empréstimos até agora?
--- 17- Quais são os livros disponíveis em cada categoria
+# 10- Liste todos os livros junto com o nome do autor e a categoria.
+select L.titulo as Livro, A.nome as Autor, C.nome as Categoria
+from Livros L
+join Autores A on A.autor_id = L.autor_id
+join Categorias C on C.categoria_id = L.categoria_id;
 
+# 11- Quem são os membros que mais pegaram livros emprestados?
+
+select M.nome as Nome_Cliente, count(E.membro_id) as Quantidade_De_Emprestimos
+from Membros M
+join Emprestimos E on E.membro_id = M.membro_id group by Nome_Cliente;
+
+
+# 12- Quais livros foram devolvidos e em que datas?
+
+select L.titulo, E.data_devolucao
+from Emprestimos E
+join Livros L on L.livro_id = E.livro_id
+where E.data_devolucao is not null;
+
+# 13- Qual é a média de preço dos livros na biblioteca?
+
+select avg(Livros.preco) as Media_Preco from Livros;
+
+# 14- Qual é a quantidade total de livros emprestados?
+
+select count(E.livro_id) as Livros_Emprestados from Emprestimos E where E.data_devolucao is null;
+
+# 15- Quais membros ainda não devolveram os livros?
+
+select M.nome
+from Emprestimos E
+join Membros M on E.membro_id = M.membro_id where E.data_devolucao is null;
+
+# 16- Qual foi a receita gerada por empréstimos até agora?
+
+select sum(Livros.preco) as Receita_Gerada
+from Livros
+join Emprestimos on Emprestimos.livro_id = Livros.livro_id;
+
+
+# 17- Quais são os livros disponíveis em cada categoria?
+
+select Livros.titulo as Nome_Livro, Categorias.nome as Nome_Categoria
+from Livros
+join Categorias on Categorias.categoria_id = Livros.categoria_id;
